@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+    <h1>{{ empleado.nombre }} {{empleado.apellidos}}</h1>
+    <h2><strong>DNI:</strong> {{ empleado.DNI }}</h2>
+    <p><strong>Email:</strong> {{empleado.email}}</p>
+    <p><strong>Número de teléfono:</strong> {{empleado.telefono}}</p>
+    <a href="{% url 'delete_empleado' empleado.id %}">Borrar</a>
+    <a href="{% url 'modificar_empleado' empleado.id %}">Editar</a>
+{% endblock %}
+
