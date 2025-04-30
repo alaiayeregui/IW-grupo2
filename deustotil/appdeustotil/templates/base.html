@@ -1,11 +1,20 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
     <title>Deustotil</title>
+    <link rel="stylesheet"  href="{% static 'css/styles.css' %}">
 </head>
 <body>
     <header>
-        <!-- código cabecera -->
+        <img src="{% static 'imagenes/logo.png' %}" alt="logo deustotil">
+        <section>
+            <button>
+                <a href="{% url 'empleados' %}">Empleados</a>
+            </button>
+            <button>
+                <a href="{% url 'clientes' %}">Clientes</a>
+            </button>
     </header>
     <article>
         {% block content %}
