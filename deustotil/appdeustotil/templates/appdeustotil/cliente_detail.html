@@ -1,13 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>{{ cliente.nombre }}</h1>
-    <h2><strong>CIF:</strong> {{ cliente.CIF }}</h2>
-    <h3><strong>Número de teléfono:</strong>{{proveedor.prov_telefono}}</h3>
-    <p><strong>Dirección:</strong>{{cliente.direccion}}</p>
-    <p><strong>Nombre de la persona de contacto:</strong>{{cliente.persona_contacto}}</p>
-    <p><strong>Email:</strong>{{cliente.email_contacto}}</p>
-    <p><strong>Número de teléfono:</strong>{{cliente.num_contacto}}</p>
-    <p><strong>Método de pago:</strong>{{cliente.pago}}</p>
+    <h2>{{ cliente.nombre }}</h2>
+    <h3><strong>CIF:</strong> {{ cliente.CIF }}</h3>
+    <p><strong>Dirección: </strong>{{cliente.direccion}}</p>
+    <p><strong>Nombre de la persona de contacto: </strong>{{cliente.persona_contacto}}</p>
+    <p><strong>Email: </strong>{{cliente.email_contacto}}</p>
+    <p><strong>Número de teléfono: </strong>{{cliente.num_contacto}}</p>
+    <p><strong>Método de pago: </strong>{{cliente.pago}}</p>
 
     <h3>Proyectos contratados:</h3>
     <ul>
@@ -20,6 +19,6 @@
         {% endfor %}
     </ul>
 
-    <a href="{% url 'modificar_cliente' cliente.id %}">Editar</a>
+    <button><a href="{% url 'modificar_cliente' cliente.id %}">Editar</a></button>
 
 {% endblock %}

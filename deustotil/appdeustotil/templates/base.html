@@ -17,11 +17,27 @@
             </button>
     </header>
     <article>
-        {% block content %}
-        {% endblock %}
+        <section>
+            {% block content %}
+            {% endblock %}
+        </section>
     </article>
     <footer>
-        <!-- código para el footer -->
+        <section>
+        <img src="{% static 'imagenes/logo_letras.png' %}" alt="logo secundario Deustotil">
+        </section>
+        <section>
+            <h3>Enlaces rápidos</h3>
+            <ul>
+                <li><a href="{% url 'empleados' %}">Empleados</a></li>
+                <li><a href="{% url 'clientes' %}">Clientes</a></li>
+            </ul>
+        </section>
+        <section>
+            <h3>Contacto IT:</h3>
+            <p>Email: soporte@deustotil.com</p>
+            <p>Tel: +34 944 045 695</p>
+        </section>
     </footer>
 </body>
 </html>
