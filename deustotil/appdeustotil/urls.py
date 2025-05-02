@@ -17,4 +17,9 @@ urlpatterns = [
     path('<int:pk>/delete_proyecto', views.ProyectoDeleteView.as_view(), name='delete_proyecto'),
     path('crear_proyecto', views.ProyectoCreateView.as_view(), name='crear_proyecto' ),
     path('<int:pk>/modificar_proyecto', views.ProyectoUpdateView.as_view(), name='modificar_proyecto'),
+    path('responsables', views.ResponsableListView.as_view(), name='responsables'),
+    path('<int:pk>/detalles_responsable', views.ResponsableDetailView.as_view(), name='detalles_responsable'),
+    path('<int:pk>/delete_resposable', views.ResponsableDeleteView.as_view(), name='delete_responsable'),
+    path('crear_responsable', views.ResponsableCreateView.as_view(), name='crear_responsable' ),
+    path('<int:pk>/modificar_responsable', views.ResponsableUpdateView.as_view(), name='modificar_responsable'),
 ]

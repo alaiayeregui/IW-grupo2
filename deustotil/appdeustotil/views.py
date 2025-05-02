@@ -3,9 +3,9 @@ from django.shortcuts import redirect, render
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
-from .models import Cliente, Empleado, Tarea, Proyecto
+from .models import Cliente, Empleado, Tarea, Proyecto, Responsable
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm, ProyectoForm
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm
 
 
 
@@ -72,3 +72,26 @@ class ProyectoUpdateView(UpdateView):
     form_class = ProyectoForm
     template_name = 'proyecto_form.html'
     success_url = reverse_lazy('proyectos')
+
+class ResponsableDetailView(DetailView):
+    model = Responsable
+
+class ResponsableListView(ListView):
+    model = Responsable
+    queryset = Responsable.objects.all()
+
+class ResponsableCreateView(CreateView):
+    model = Responsable
+    form_class = ResponsableForm
+    template_name = 'responsable_form.html'
+    success_url = reverse_lazy('responsables')
+
+class ResponsableDeleteView(DeleteView):
+    model = Responsable
+    success_url = reverse_lazy('responsables')
+
+class ResponsableUpdateView(UpdateView):
+    model = Responsable
+    form_class = ResponsableForm
+    template_name = 'responsable_form.html'
+    success_url = reverse_lazy('responsables')
