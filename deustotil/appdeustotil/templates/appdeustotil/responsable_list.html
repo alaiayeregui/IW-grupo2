@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>Proyectos:</h2>
+<section id="content">
+    <h2>Responsables:</h2>
     <ul>
-    {% for proyecto in object_list %}
+    {% for responsable in object_list %}
         <li>    
-            <a href="{% url 'detalles_proyecto' proyecto.id %}">{{ proyecto.nombre}}</a>
+            <a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.nombre}} {{ responsable.apellidos}}</a>
         </li>
     {% endfor %}
     </ul>
     <button><a href="{% url 'crear_responsable'%}">Nuevo responsable</a></button>
+</section>
 {% endblock %}

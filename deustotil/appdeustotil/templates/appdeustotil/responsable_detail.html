@@ -1,9 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <h1>{{ responsable.nombre }} </h1>
+<section id="content">
+    <h1>{{ responsable.nombre }}{{ responsable.apellidos}} </h1>
     <p><strong>DNI:</strong> {{responsable.DNI}}</p>
-    <p><strong>Nombre:</strong> {{responsable.nombre}}</p>
-    <p><strong>Apellidos:</strong> {{responsable.apellidos}}</p>
     <p><strong>Cargo:</strong> {{responsable.cargo}}</p>
     <p><strong>Fecha Incorporación:</strong> {{responsable.fecha_incorporacion}}</p>
+</section>
 {% endblock %}
