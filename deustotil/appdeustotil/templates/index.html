@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+    <section id="indice">
+        <section class="opciones">
+            <a href="{% url 'empleados' %}">Empleados</a>
+        </section>
+        <section class="opciones">
+            <a href="{% url 'clientes' %}">Clientes</a>
+        </section>
+        <section class="opciones">
+            Proyectos
+        </section>
+        <section class="opciones">
+            Tareas
+        </section>
+    </section>
+{% endblock %}

@@ -7,7 +7,8 @@ from .models import Cliente, Empleado, Tarea, Proyecto
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
 from .forms import EmpleadoForm, ClienteForm
 
-
+def index(request):
+    return render(request, 'index.html')
 
 class EmpleadoListView(ListView):
     model = Empleado

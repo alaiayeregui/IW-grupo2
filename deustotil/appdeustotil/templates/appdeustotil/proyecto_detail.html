@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<section id="content">
     <h1>{{ proyecto.nombre }} </h1>
     <p><strong>Descripción:</strong> {{proyecto.descripcion}}</p>
     <p><strong>Fecha de inicio:</strong> {{proyecto.fecha_inicio}}</p>
     <p><strong>Fecha de fin:</strong> {{proyecto.fecha_fin}}</p>
     <p><strong>Presupuesto:</strong> {{proyecto.presupuesto}}</p>
     <p><strong>Tareas:</strong> {{proyecto.tareas}}</p>
+</section>
 {% endblock %}
 

@@ -1,3 +1,4 @@
+<!-- archivo html base para la aplicación -->
 {% load static %}
 <!DOCTYPE html>
 <html>
@@ -17,10 +18,8 @@
             </button>
     </header>
     <article>
-        <section>
-            {% block content %}
-            {% endblock %}
-        </section>
+        {% block content %}
+        {% endblock %}
     </article>
     <footer>
         <section>
@@ -31,6 +30,7 @@
             <ul>
                 <li><a href="{% url 'empleados' %}">Empleados</a></li>
                 <li><a href="{% url 'clientes' %}">Clientes</a></li>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
             </ul>
         </section>
         <section>

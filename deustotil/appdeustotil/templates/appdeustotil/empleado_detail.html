@@ -1,10 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
+<section id="content">
     <h2>{{ empleado.nombre }} {{empleado.apellidos}}</h2>
     <h3><strong>DNI:</strong> {{ empleado.DNI }}</h3>
     <p><strong>Email:</strong> {{empleado.email}}</p>
     <p><strong>Número de teléfono:</strong> {{empleado.telefono}}</p>
     <button><a href="{% url 'delete_empleado' empleado.id %}">Borrar</a></button>
     <button><a href="{% url 'modificar_empleado' empleado.id %}">Editar</a></button>
+</section>
 {% endblock %}
 
