@@ -1,3 +1,4 @@
+/*Estilos generales para toda la pagina */
 *{
     margin:0;
     padding:0;
@@ -8,6 +9,7 @@ html, body{
     height: 100%;
 }
 
+/* Estilo de la barra de navegacion de la cabecera */
 header{
     width: 100%;
     height: 15%;
@@ -54,6 +56,7 @@ header button a{
     color: #4b4242;
 }
 
+/* Estilo para el footer */
 footer{
     background-color: #efe7d7;
     border-top: 2px solid #4b4242;
@@ -98,16 +101,26 @@ footer section{
     margin-right: 120px;
 }
 
+/* Estilos del contenido de la pagina */
 article{
-    height: 65%;
+    min-height: 65%;
     background-image: url('../imagenes/fondo.png');
     background-size: cover;  
     background-repeat: no-repeat; 
-    background-position: center;  
+    background-position: center;
+    padding: 30px; 
+}
+
+#content{
+    background-color: #fbfbfb;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
 }
 
 article section{
-    padding: 30px;
+    padding: 20px;
     margin-left: 10px;
     color:#4b4242;
 }
@@ -153,6 +166,7 @@ article section button {
     margin-top: 20px;
     padding: 15px;
     background-color: #efe7d7;
+    color:#4b4242;
     border-radius: 10px;
     font-weight: bold;
 }
@@ -164,9 +178,102 @@ article section button a{
 
 article section button:hover {
     background-color: #4b4242;
-    color: #fbfbfb;
+    color: #efe7d7;
 }
 
 article section button a:hover{
     color: white
 }
+
+/* Estilo para los formularios */
+form {
+    background-color: #fbfbfb;
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+form p {
+    margin-bottom: 5px;
+}
+
+form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #4b4242;
+}
+
+form input,
+form select, form textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    color:#352f2f;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+form textarea {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+form input[type="submit"] {
+    background-color: #4b4242;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 6px;
+    font-size: 1rem;
+    display: block;
+    margin: 5px auto 0 auto;
+    width: auto;
+}
+
+form input[type="submit"]:hover {
+    background-color: #352f2f;
+}
+
+/* Estilo de la pagina de inicio */
+.opciones{
+    height: 100px;
+    width: 100px;
+    background-color:#efe7d7;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px 0px
+}
+
+.opciones:hover{
+    background-color: #4b4242;
+    color: #fbfbfb;
+
+}
+
+.opciones a{
+    color: #4b4242;
+    text-decoration: none;
+}
+
+.opciones:hover a{
+    color: #fbfbfb;
+    text-decoration: underline;
+    font-weight: bold;
+}
+
+#indice{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: space-around;
+    justify-content: space-around;
+}
+

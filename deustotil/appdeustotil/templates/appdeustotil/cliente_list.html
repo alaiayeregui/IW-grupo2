@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
+<section id="content">
     <h2>Clientes:</h2>
     <ul>
     {% for cliente in object_list %}
@@ -9,4 +10,5 @@
     {% endfor %}
     </ul>
     <button><a href="{% url 'crear_cliente'%}">Nuevo cliente</a></button>
+</section>
 {% endblock %}
