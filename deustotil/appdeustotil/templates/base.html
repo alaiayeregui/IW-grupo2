@@ -16,6 +16,9 @@
             <button>
                 <a href="{% url 'clientes' %}">Clientes</a>
             </button>
+            <button>
+                <a href="{% url 'proyectos' %}">Proyectos</a>
+            </button>
     </header>
     <article>
         {% block content %}
@@ -28,9 +31,10 @@
         <section>
             <h3>Enlaces rápidos</h3>
             <ul>
+                <li><a href="{% url 'index' %}">Inicio</a></li>
                 <li><a href="{% url 'empleados' %}">Empleados</a></li>
                 <li><a href="{% url 'clientes' %}">Clientes</a></li>
-                <li><a href="{% url 'index' %}">Inicio</a></li>
+                <li><a href="{% url 'proyectos' %}">Proyectos</a></li>
             </ul>
         </section>
         <section>

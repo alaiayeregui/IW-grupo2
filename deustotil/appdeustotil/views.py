@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from .models import Cliente, Empleado, Tarea, Proyecto
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm
 
 def index(request):
     return render(request, 'index.html')
@@ -53,3 +53,23 @@ class ClienteUpdateView(UpdateView):
 
 class ProyectoDetailView(DetailView):
     model = Proyecto
+
+class ProyectoListView(ListView):
+    model = Proyecto
+    queryset = Proyecto.objects.all()
+
+class ProyectoCreateView(CreateView):
+    model = Proyecto
+    form_class = ProyectoForm
+    template_name = 'proyecto_form.html'
+    success_url = reverse_lazy('proyectos')
+
+class ProyectoDeleteView(DeleteView):
+    model = Proyecto
+    success_url = reverse_lazy('proyectos')
+
+class ProyectoUpdateView(UpdateView):
+    model = Proyecto
+    form_class = ProyectoForm
+    template_name = 'proyecto_form.html'
+    success_url = reverse_lazy('proyectos')
