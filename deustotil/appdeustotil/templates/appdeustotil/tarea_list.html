@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content">
+    <h2>Tareas:</h2>
+    <ul>
+    {% for tarea in object_list %}
+        <li>    
+            <a href="{% url 'detalles_tarea' tarea.id %}">{{ tarea.nombre}}</a>
+        </li>
+    {% endfor %}
+    </ul>
+    <button><a href="{% url 'crear_tarea'%}">Nueva tarea</a></button>
+</section>
+{% endblock %}

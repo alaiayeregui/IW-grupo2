@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content">
+    <h2>{{ tarea.nombre }}</h2>
+    <p><strong>Descripción:</strong> {{ tarea.descripcion }}</p>
+    <p><strong>Fecha inicio: </strong>{{tarea.fecha_inicio}}</p>
+    <p><strong>Fecha fin: </strong>{{tarea.fecha_fin}}</p>
+    <p><strong>Responsable: </strong>{{tarea.responsable}}</p>
+    <p><strong>Proyecto: </strong>{{tarea.proyecto}}</p>
+    <p><strong>Prioridad: </strong>{{tarea.prioridad}}</p>
+    <p><strong>Estado: </strong>{{tarea.estado}}</p>
+    <p><strong>Notas: </strong>{{tarea.notas}}</p>
+
+    <button><a href="{% url 'modificar_tarea' tarea.id %}">Editar</a></button>
+</section>
+{% endblock %}

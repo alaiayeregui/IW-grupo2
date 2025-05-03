@@ -23,4 +23,9 @@ urlpatterns = [
     path('<int:pk>/delete_resposable', views.ResponsableDeleteView.as_view(), name='delete_responsable'),
     path('crear_responsable', views.ResponsableCreateView.as_view(), name='crear_responsable' ),
     path('<int:pk>/modificar_responsable', views.ResponsableUpdateView.as_view(), name='modificar_responsable'),
+    path('tareas', views.TareaListView.as_view(), name='tareas'),
+    path('<int:pk>/detalle_tarea', views.TareaDetailView.as_view(), name='detalles_tarea'),
+    path('crear_tarea', views.TareaCreateView.as_view(), name='crear_tarea'),
+    path('<int:pk>/delete_tarea', views.TareaDeleteView.as_view(), name='delete_tarea'),
+    path('<int:pk>/modificar_tarea', views.TareaUpdateView.as_view(), name='modificar_tarea'),
 ]

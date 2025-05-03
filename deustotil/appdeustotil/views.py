@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from .models import Cliente, Empleado, Tarea, Proyecto, Responsable
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm
 
 def index(request):
     return render(request, 'index.html')
@@ -96,3 +96,25 @@ class ResponsableUpdateView(UpdateView):
     form_class = ResponsableForm
     template_name = 'responsable_form.html'
     success_url = reverse_lazy('responsables')
+
+class TareaListView(ListView):
+    model = Tarea
+
+class TareaDetailView(DetailView):
+    model = Tarea
+
+class TareaCreateView(CreateView):
+    model = Tarea
+    form_class = TareaForm
+    template_name = 'tarea_form.html'
+    success_url = reverse_lazy('tareas')
+
+class TareaDeleteView(DeleteView):
+    model = Tarea
+    success_url = reverse_lazy('tareas')
+
+class TareaUpdateView(UpdateView):
+    model = Tarea
+    form_class = TareaForm
+    template_name = 'tarea_form.html'
+    success_url = reverse_lazy('tareas')
