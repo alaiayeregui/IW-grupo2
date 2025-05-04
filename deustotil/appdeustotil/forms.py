@@ -25,3 +25,8 @@ class TareaForm(forms.ModelForm):
     class Meta:
         model = Tarea
         fields = '__all__'
+
+class TareaNotasForm(forms.ModelForm):
+    class Meta:
+        model = Tarea
+        fields = ['notas']

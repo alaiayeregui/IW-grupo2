@@ -11,6 +11,7 @@
     <p><strong>Estado: </strong>{{tarea.estado}}</p>
     <p><strong>Notas: </strong>{{tarea.notas}}</p>
 
+    <button><a href="{% url 'modificar_tarea_notas' tarea.id %}">Editar notas</a></button>
     <button><a href="{% url 'modificar_tarea' tarea.id %}">Editar</a></button>
 </section>
 {% endblock %}

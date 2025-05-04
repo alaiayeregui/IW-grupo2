@@ -5,7 +5,7 @@ from django.urls import reverse_lazy
 from django.views import View
 from .models import Cliente, Empleado, Tarea, Proyecto, Responsable
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm
 
 def index(request):
     return render(request, 'index.html')
@@ -117,4 +117,10 @@ class TareaUpdateView(UpdateView):
     model = Tarea
     form_class = TareaForm
     template_name = 'tarea_form.html'
+    success_url = reverse_lazy('tareas')
+
+class TareaNotasUpdateView(UpdateView):
+    model = Tarea
+    form_class = TareaNotasForm  # solo el campo 'notas'
+    template_name = 'tarea_notas_form.html'
     success_url = reverse_lazy('tareas')
