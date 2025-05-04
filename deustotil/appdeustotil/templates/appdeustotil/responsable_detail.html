@@ -5,5 +5,17 @@
     <p><strong>DNI:</strong> {{responsable.DNI}}</p>
     <p><strong>Cargo:</strong> {{responsable.cargo}}</p>
     <p><strong>Fecha Incorporación:</strong> {{responsable.fecha_incorporacion}}</p>
+    <p><strong>Proyectos:</strong></p>
+    <ul>
+    {% for proyecto in responsable.proyecto_set.all %}  
+        <li>
+            {{proyecto.nombre}}
+        </li>
+    {% empty %} 
+        <li>
+            Actualmente ninguno
+        </li>
+    {% endfor %}
+    </ul>    
 </section>
 {% endblock %}
