@@ -1,6 +1,8 @@
 {% extends "base.html" %}
+{% load static %}
 {% block content %}
     <section id="indice">
+        <img src="{% static 'imagenes/inicio1.jpg' %}" alt="imagen consultoría">
         <section class="opciones">
             <a href="{% url 'empleados' %}">Empleados</a>
         </section>
@@ -8,10 +10,12 @@
             <a href="{% url 'clientes' %}">Clientes</a>
         </section>
         <section class="opciones">
-            Proyectos
+            <a href="{% url 'proyectos' %}">Proyectos</a>
         </section>
         <section class="opciones">
-            Tareas
+            <a href="{% url 'tareas' %}">Tareas</a>
         </section>
-    </section>
+        <section class="opciones">
+            <a href="{% url 'responsables' %}">Responsables</a>
+        </section>
 {% endblock %}

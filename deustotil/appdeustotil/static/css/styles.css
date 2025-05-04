@@ -13,8 +13,8 @@ html, body{
 header{
     width: 100%;
     height: 15%;
-    background-color: #efe7d7;
-    border-bottom: 4px solid #4b4242;
+    background-color: #e0e0e0;
+    border-bottom: 4px solid #555555;
     display: flex;
     flex-direction: row;
     justify-content: space-between; 
@@ -42,7 +42,7 @@ header button{
     border-radius: 8px;
     font-weight: 600;
     margin-right: 30px;
-    background-color: #fbfbfb;
+    background-color: #f0f0f0;
     border: none;
 }
 
@@ -53,13 +53,13 @@ header button :hover{
 
 header button a{
     text-decoration: none;
-    color: #4b4242;
+    color: #555555;
 }
 
 /* Estilo para el footer */
 footer{
-    background-color: #efe7d7;
-    border-top: 2px solid #4b4242;
+    background-color: #e0e0e0;
+    border-top: 2px solid #555555;
     height: 20%;
     margin-top: auto;
     display: flex;
@@ -83,13 +83,13 @@ footer section ul li{
 
 footer section p{
     margin-top: 4px;
-    color: #4b4242;
+    color: #555555;
     margin-left: 10px;
 }
 
 footer section a{
     text-decoration: none;
-    color: #4b4242;
+    color: #555555;
 }
 
 footer section a:hover{
@@ -112,7 +112,7 @@ article{
 }
 
 #content{
-    background-color: #fbfbfb;
+    background-color: whitesmoke;
     max-width: 600px;
     margin: auto;
     padding: 20px;
@@ -122,7 +122,7 @@ article{
 article section{
     padding: 20px;
     margin-left: 10px;
-    color:#4b4242;
+    color:#555555;
 }
 
 article section p{
@@ -131,7 +131,7 @@ article section p{
 }
 
 article section h2 {
-    color: #4b4242;
+    color: #555555;
     font-size: 30px;
     font-weight: 700;
     margin-bottom: 20px;
@@ -154,31 +154,31 @@ article section ul li {
 
 article section ul li a {
     text-decoration: none;
-    color: #655b5b;
+    color: #666666;
 }
 
 article section ul li a:hover{
-    color: #4b4242;
+    color: #555555;
     text-decoration: underline;
 }
 
 article section button {
     margin-top: 20px;
     padding: 15px;
-    background-color: #efe7d7;
-    color:#4b4242;
+    background-color: #e0e0e0;
+    color:#555555;
     border-radius: 10px;
     font-weight: bold;
 }
 
 article section button a{
-    color: #4b4242;
+    color: #555555;
     text-decoration: none;
 }
 
 article section button:hover {
-    background-color: #4b4242;
-    color: #efe7d7;
+    background-color: #555555;
+    color: #e0e0e0;
 }
 
 article section button a:hover{
@@ -187,7 +187,6 @@ article section button a:hover{
 
 /* Estilo para los formularios */
 form {
-    background-color: #fbfbfb;
     max-width: 600px;
     margin: auto;
     padding: 20px;
@@ -201,17 +200,17 @@ form label {
     display: block;
     font-weight: bold;
     margin-bottom: 5px;
-    color: #4b4242;
+    color: #555555;
 }
 
 form input,
 form select, form textarea {
     width: 100%;
     padding: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 6px;
     margin-bottom: 15px;
-    color:#352f2f;
+    color:#444444;
     font-size: 13px;
     font-weight: 500;
 }
@@ -219,31 +218,31 @@ form select, form textarea {
 form textarea {
     width: 100%;
     padding: 5px;
-    border: 1px solid #ccc;
+    border: 1px solid #cccccc;
     border-radius: 6px;
 }
 
 form input[type="submit"] {
-    background-color: #4b4242;
+    background-color: #555555;
     color: white;
     padding: 10px 15px;
     border: none;
     border-radius: 6px;
-    font-size: 1rem;
+    font-size: 15px;
     display: block;
     margin: 5px auto 0 auto;
     width: auto;
 }
 
 form input[type="submit"]:hover {
-    background-color: #352f2f;
+    background-color: #444444;
 }
 
 /* Estilo de la pagina de inicio */
 .opciones{
     height: 100px;
     width: 100px;
-    background-color:#efe7d7;
+    background-color:#e0e0e0;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
@@ -253,27 +252,187 @@ form input[type="submit"]:hover {
 }
 
 .opciones:hover{
-    background-color: #4b4242;
-    color: #fbfbfb;
+    background-color: #555555;
+    color: #f0f0f0;
 
 }
 
 .opciones a{
-    color: #4b4242;
+    color: #555555;
     text-decoration: none;
 }
 
 .opciones:hover a{
-    color: #fbfbfb;
+    color: #f0f0f0;
     text-decoration: underline;
     font-weight: bold;
 }
 
 #indice{
     display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    align-items: space-around;
-    justify-content: space-around;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
+#indice section{
+    width: 70%;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+#indice img{
+    width: 80%;
+    border-radius: 10px;
+}
+
+/* estilo responsive para móviles */
+@media screen and (max-width: 480px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+        height: auto;
+    }
+
+    header img {
+        height: 70px;
+        margin: 10px auto;
+    }
+
+    header section {
+        margin: 10px auto;
+    }
+
+    header button {
+        width: 90%;
+        margin: 10px auto;
+        font-size: 14px;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 15px;
+        height: auto;
+        text-align: center;
+    }
+
+    footer img {
+        height: 60px;
+    }
+
+    footer section {
+        margin: 10px auto;
+    }
+
+    article {
+        padding: 15px;
+    }
+
+    article section {
+        padding: 10px;
+        margin-left: 0;
+    }
+
+    article section h2 {
+        font-size: 22px;
+    }
+
+    article section p,
+    article section ul li {
+        font-size: 15px;
+    }
+
+    #content,
+    form {
+        width: 90%;
+        padding: 15px;
+    }
+
+    .opciones {
+        width: 90%;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    #indice section {
+        width: 95%;
+        font-size: 16px;
+    }
+
+    #indice img {
+        width: 95%;
+    }
+}
+
+/* estilo responsive para tablets */
+@media screen and (min-width: 481px) and (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 10px;
+        height: auto;
+    }
+
+    header img {
+        height: 100px;
+        margin: 10px auto;
+    }
+
+    header section {
+        margin: 10px auto;
+    }
+
+    header button {
+        width: 120px;
+        font-size: 14px;
+        margin: 10px auto;
+    }
+
+    footer {
+        flex-direction: column;
+        padding: 20px;
+        height: auto;
+        text-align: center;
+    }
+
+    footer img {
+        height: 80px;
+    }
+
+    footer section {
+        margin: 15px auto;
+    }
+
+    article {
+        padding: 20px;
+    }
+
+    article section h2 {
+        font-size: 26px;
+    }
+
+    article section p,
+    article section ul li {
+        font-size: 16px;
+    }
+
+    #content,
+    form {
+        width: 90%;
+        padding: 20px;
+    }
+
+    .opciones {
+        width: 80%;
+        height: auto;
+        padding: 15px 0;
+    }
+
+    #indice section {
+        width: 85%;
+        font-size: 18px;
+    }
+
+    #indice img {
+        width: 85%;
+    }
+}
