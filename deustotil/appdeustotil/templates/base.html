@@ -8,7 +8,9 @@
 </head>
 <body>
     <header>
-        <img src="{% static 'imagenes/logo.png' %}" alt="logo deustotil">
+        <a href="{% url 'index' %}">
+            <img src="{% static 'imagenes/logo.png' %}" alt="logo deustotil">
+        </a>
         <section>
             <button>
                 <a href="{% url 'empleados' %}">Empleados</a>

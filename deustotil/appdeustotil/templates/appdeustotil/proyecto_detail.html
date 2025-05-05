@@ -7,6 +7,17 @@
     <p><strong>Fecha de fin:</strong> {{proyecto.fecha_fin}}</p>
     <p><strong>Presupuesto:</strong> {{proyecto.presupuesto}}</p>
     <p><strong>Tareas:</strong> {{proyecto.tareas}}</p>
-    <p><strong>Responsables:</strong> {{proyecto.reponsables}}</p>
+    <p><strong>Responsables:</strong></p>
+    <ul>
+    {% for responsable in proyecto.responsables.all %}  
+        <li>
+            <a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.nombre }} {{ responsable.apellidos }}</a>
+        </li>
+    {% empty %} 
+        <li>
+            No tiene responsable identificado.
+        </li>
+    {% endfor %}
+    </ul>  
 {% endblock %}
 
