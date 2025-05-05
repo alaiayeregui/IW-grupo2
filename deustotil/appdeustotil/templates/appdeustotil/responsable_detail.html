@@ -17,5 +17,8 @@
         </li>
     {% endfor %}
     </ul>    
+
+    <button><a href="{% url 'delete_responsable' responsable.id %}">Borrar</a></button>
+    <button><a href="{% url 'modificar_responsable' responsable.id %}">Editar</a></button>
 </section>
 {% endblock %}

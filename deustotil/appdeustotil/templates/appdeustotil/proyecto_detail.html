@@ -18,6 +18,10 @@
             No tiene responsable identificado.
         </li>
     {% endfor %}
+
     </ul>  
+    <button><a href="{% url 'delete_proyecto' proyecto.id %}">Borrar</a></button>
+    <button><a href="{% url 'modificar_proyecto' proyecto.id %}">Editar</a></button>
+</section>
 {% endblock %}
 
