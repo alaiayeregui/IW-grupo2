@@ -99,6 +99,7 @@ class ResponsableUpdateView(UpdateView):
 
 class TareaListView(ListView):
     model = Tarea
+    queryset = Tarea.objects.all()
 
 class TareaDetailView(DetailView):
     model = Tarea
