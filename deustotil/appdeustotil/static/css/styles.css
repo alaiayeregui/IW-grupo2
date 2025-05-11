@@ -73,7 +73,7 @@ footer img{
 
 footer section ul{
     list-style: none;
-    margin-left: 10px;
+    margin-right: 15px;
     margin-top: 5px;
 }
 
@@ -284,6 +284,17 @@ form input[type="submit"]:hover {
 #indice img{
     width: 80%;
     border-radius: 10px;
+}
+
+.columns{
+    width: 100%;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+}
+
+.column{
+    width: 45%;
 }
 
 /* estilo responsive para móviles */

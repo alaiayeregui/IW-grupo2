@@ -119,6 +119,7 @@ class ResponsableUpdateView(UpdateView):
 #mostrar todas las tareas
 class TareaListView(ListView):
     model = Tarea
+    queryset = Tarea.objects.all()
 
 #detalles de una tarea
 class TareaDetailView(DetailView):

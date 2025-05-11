@@ -9,13 +9,16 @@
     <ul>
     {% for proyecto in responsable.proyecto_set.all %}  
         <li>
-            {{proyecto.nombre}}
+            <a href="{% url 'detalles_proyecto' proyecto.pk %}">{{ proyecto.nombre }}</a>
         </li>
     {% empty %} 
         <li>
-            Actualmente ninguno
+            Actualmente ninguno.
         </li>
     {% endfor %}
     </ul>    
+
+    <button><a href="{% url 'delete_responsable' responsable.id %}">Borrar</a></button>
+    <button><a href="{% url 'modificar_responsable' responsable.id %}">Editar</a></button>
 </section>
 {% endblock %}

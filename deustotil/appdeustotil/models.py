@@ -46,7 +46,7 @@ class Tarea(models.Model):
     descripcion = models.TextField(null = True, blank=True)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
-    responsable = models.ForeignKey(Empleado, on_delete=models.CASCADE)
+    responsable = models.ManyToManyField(Empleado)
     proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE)
     prioridad = models.CharField(max_length= 5, choices=[("Baja","baja"), ("Media","media"), ("Alta","alta")], default = "baja")
     estado = models.CharField(max_length=10, choices=[("Abierta","abierta"),("Asignada","asignada"), ("En proceso","en proceso"), ("Finalizada","finalizada")], default="Abierta")

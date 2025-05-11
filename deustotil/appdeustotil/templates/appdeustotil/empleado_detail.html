@@ -5,6 +5,19 @@
     <h3><strong>DNI:</strong> {{ empleado.DNI }}</h3>
     <p><strong>Email:</strong> {{empleado.email}}</p>
     <p><strong>Número de teléfono:</strong> {{empleado.telefono}}</p>
+    <p><strong>Tareas:</strong></p>
+    <ul>
+    {% for tarea in empleado.tarea_set.all %}  
+        <li>
+            <a href="{% url 'detalles_tarea' tarea.pk %}">{{ tarea.nombre }}</a>
+        </li>
+    {% empty %} 
+        <li>
+            Actualmente no tiene tareas asignadas.
+        </li>
+    {% endfor %}
+    </ul>    
+
     <button><a href="{% url 'delete_empleado' empleado.id %}">Borrar</a></button>
     <button><a href="{% url 'modificar_empleado' empleado.id %}">Editar</a></button>
 </section>
