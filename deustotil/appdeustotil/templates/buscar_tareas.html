@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<section id="content">
+<h2>Filtrar Tareas</h2>
+<form method="get">
+    <label for="prioridad">Prioridad:</label>
+    <select name="prioridad" id="prioridad">
+        <option value="">-- Todas --</option>
+        <option value="Baja">Baja</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option>
+    </select>
+
+    <label for="estado">Estado:</label>
+    <select name="estado">
+            <option value="">-- Todos --</option>
+            <option value="Abierta">Abierta</option>
+            <option value="Asignada">Asignada</option>
+            <option value="En proceso">En proceso</option>
+            <option value="Finalizada">Finalizada</option>
+        </select>
+    <button type="submit">Buscar</button>
+</form>
+
+<h3>Resultado:</h3>
+<ul>
+    {% for tarea in tareas %}
+        <li>
+            <a href="{% url 'detalles_tarea' tarea.id %}">{{ tarea.nombre }}</a>
+        </li>
+    {% empty %}
+        <li>No se encontraron tareas con esos filtros.</li>
+    {% endfor %}
+</ul>
+</section>
+{% endblock %}

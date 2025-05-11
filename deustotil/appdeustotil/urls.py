@@ -29,4 +29,5 @@ urlpatterns = [
     path('<int:pk>/delete_tarea', views.TareaDeleteView.as_view(), name='delete_tarea'),
     path('<int:pk>/modificar_tarea', views.TareaUpdateView.as_view(), name='modificar_tarea'),
     path('<int:pk>/modificar_tarea_notas', views.TareaNotasUpdateView.as_view(), name='modificar_tarea_notas'),
+    path('buscar_tareas', views.buscarTarea, name='buscar_tareas'),
 ]
