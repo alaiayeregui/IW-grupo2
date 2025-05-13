@@ -21,5 +21,10 @@
     </ul>
 
     <button><a href="{% url 'modificar_cliente' cliente.id %}">Editar</a></button>
+    <form method="post" action="{% url 'email_cliente' cliente.id %}">
+        {% csrf_token %}
+        <button type="submit">Enviar email aviso cambios</button>
+    </form>
+
 </section>
 {% endblock %}

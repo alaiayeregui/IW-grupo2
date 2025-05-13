@@ -122,3 +122,6 @@ STATIC_URL = '/static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+#Funcionalidad para envio de correos desde la app -> mostrar lo enviado en el terminal
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

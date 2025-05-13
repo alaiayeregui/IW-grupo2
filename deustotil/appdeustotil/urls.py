@@ -13,6 +13,7 @@ urlpatterns = [
     path('<int:pk>/detalles_proyecto', views.ProyectoDetailView.as_view(), name='detalles_proyecto'),
     path('<int:pk>/modificar_cliente', views.ClienteUpdateView.as_view(), name='modificar_cliente'),
     path('crear_cliente', views.ClienteCreateView.as_view(), name='crear_cliente' ),
+    path('<int:pk>/email_cliente', views.ClienteEnviarEmailView.as_view(), name = 'email_cliente'),
     path('proyectos', views.ProyectoListView.as_view(), name='proyectos'),
     path('<int:pk>/detalles_proyecto', views.ProyectoDetailView.as_view(), name='detalles_proyecto'),
     path('<int:pk>/delete_proyecto', views.ProyectoDeleteView.as_view(), name='delete_proyecto'),

@@ -1,8 +1,10 @@
-from django.shortcuts import redirect, render
+from django.shortcuts import redirect, render, get_object_or_404
 
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.views import View
+from django.core.mail import send_mail
+from django.conf import settings
 from .models import Cliente, Empleado, Tarea, Proyecto, Responsable
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
 from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm
@@ -59,6 +61,21 @@ class ClienteUpdateView(UpdateView):
     form_class = ClienteForm
     template_name = 'cliente_form.html'
     success_url = reverse_lazy('clientes')
+
+#enviar emails a clientes
+class ClienteEnviarEmailView(View):
+    def post(self, request, pk):
+        cliente = get_object_or_404(Cliente, pk=pk)
+
+        # Enviar el correo
+        send_mail(
+            'Datos del cliente actualizados', 
+            f'Los datos del cliente {cliente.nombre} han sido modificados.',
+            settings.DEFAULT_FROM_EMAIL,  
+            [cliente.email_contacto], 
+        )
+        return redirect('detalles_cliente', pk=pk)
+
 
 #detalles de un proyecto
 class ProyectoDetailView(DetailView):
