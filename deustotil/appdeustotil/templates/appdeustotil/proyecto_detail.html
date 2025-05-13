@@ -19,6 +19,17 @@
         </li>
     {% endfor %}
 
+    <h3>Documentos asociados</h3>
+    <ul>
+        {% for doc in proyecto.documento.all %}
+            <li>
+                <a href="{{ doc.documento.url }}" download>{{ doc.titulo }}</a>
+            </li>
+        {% empty %}
+            <li>No hay documentos asociados.</li>
+        {% endfor %}
+    </ul>
+
     </ul>  
     <button><a href="{% url 'delete_proyecto' proyecto.id %}">Borrar</a></button>
     <button><a href="{% url 'modificar_proyecto' proyecto.id %}">Editar</a></button>

@@ -125,3 +125,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 #Funcionalidad para envio de correos desde la app -> mostrar lo enviado en el terminal
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+#Funcionalidad para poder almacenar distintos documetnos
+MEDIA_ROOT = BASE_DIR / 'media'
+MEDIA_URL = '/media/'

@@ -54,3 +54,13 @@ class Tarea(models.Model):
     def __str__(self):
         return self.nombre
 
+def ruta_personalizada(instance, filename):
+    return f"proyectos/{instance.proyecto.id}/{filename}"
+
+class Documento(models.Model):
+    titulo = models.CharField(max_length=50)
+    documento = models.FileField(upload_to=ruta_personalizada)
+    proyecto = models.ForeignKey(Proyecto, on_delete=models.CASCADE, related_name='documentos')
+    def __str__(self):
+        return self.titulo
+

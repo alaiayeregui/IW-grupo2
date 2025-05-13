@@ -5,9 +5,9 @@ from django.urls import reverse_lazy
 from django.views import View
 from django.core.mail import send_mail
 from django.conf import settings
-from .models import Cliente, Empleado, Tarea, Proyecto, Responsable
+from .models import Cliente, Empleado, Tarea, Proyecto, Responsable, Documento
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm, DocumentoForm
 
 def index(request):
     return render(request, 'index.html')
@@ -85,6 +85,7 @@ class ProyectoDetailView(DetailView):
 class ProyectoListView(ListView):
     model = Proyecto
     queryset = Proyecto.objects.all()
+    template_name = 'proyecto_list.html'
 
 #crear un proyecto nuevo
 class ProyectoCreateView(CreateView):
@@ -92,6 +93,23 @@ class ProyectoCreateView(CreateView):
     form_class = ProyectoForm
     template_name = 'proyecto_form.html'
     success_url = reverse_lazy('proyectos')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['doc_form'] = DocumentoForm(self.request.POST or None, self.request.FILES or None)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        doc_form = context['doc_form']
+        self.object = form.save()
+
+        if doc_form.is_valid() and doc_form.cleaned_data.get('documento'):
+            documento = doc_form.save(commit=False)
+            documento.proyecto = self.object
+            documento.save()
+
+        return super().form_valid(form)
 
 #eliminar un proyecto
 class ProyectoDeleteView(DeleteView):
@@ -104,6 +122,23 @@ class ProyectoUpdateView(UpdateView):
     form_class = ProyectoForm
     template_name = 'proyecto_form.html'
     success_url = reverse_lazy('proyectos')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['doc_form'] = DocumentoForm(self.request.POST or None, self.request.FILES or None)
+        return context
+
+    def form_valid(self, form):
+        context = self.get_context_data()
+        doc_form = context['doc_form']
+        self.object = form.save()
+
+        if doc_form.is_valid() and doc_form.cleaned_data.get('documento'):
+            documento = doc_form.save(commit=False)
+            documento.proyecto = self.object
+            documento.save()
+
+        return super().form_valid(form)
 
 #detalles de un responsable
 class ResponsableDetailView(DetailView):
