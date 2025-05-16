@@ -18,10 +18,11 @@
             No tiene responsable identificado.
         </li>
     {% endfor %}
-
-    <h3>Documentos asociados</h3>
+    </ul>
+    
+    <p><strong>Documentos asociados:</strong></p>
     <ul>
-        {% for doc in proyecto.documento.all %}
+        {% for doc in proyecto.documentos.all %}
             <li>
                 <a href="{{ doc.documento.url }}" download>{{ doc.titulo }}</a>
             </li>
@@ -30,7 +31,6 @@
         {% endfor %}
     </ul>
 
-    </ul>  
     <button><a href="{% url 'delete_proyecto' proyecto.id %}">Borrar</a></button>
     <button><a href="{% url 'modificar_proyecto' proyecto.id %}">Editar</a></button>
 </section>
