@@ -81,6 +81,7 @@ class ClienteEnviarEmailView(View):
 class ProyectoDetailView(DetailView):
     model = Proyecto
 
+
 #ver todos los proyectos
 class ProyectoListView(ListView):
     model = Proyecto
