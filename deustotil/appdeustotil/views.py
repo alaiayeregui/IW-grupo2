@@ -95,6 +95,12 @@ class ProyectoCreateView(CreateView):
     template_name = 'proyecto_form.html'
     success_url = reverse_lazy('proyectos')
 
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['auto_id'] = 'proyecto_%s' 
+        return kwargs
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['doc_form'] = DocumentoForm(self.request.POST or None, self.request.FILES or None)
@@ -123,6 +129,11 @@ class ProyectoUpdateView(UpdateView):
     form_class = ProyectoForm
     template_name = 'proyecto_form.html'
     success_url = reverse_lazy('proyectos')
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['auto_id'] = 'proyecto_%s' 
+        return kwargs
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)

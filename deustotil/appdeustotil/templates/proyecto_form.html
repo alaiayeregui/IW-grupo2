@@ -1,12 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
+<section id="content">
     <h1>Datos del proyecto:</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-
         <h3>Documento (opcional)</h3>
         {{ doc_form.as_p }}
         <input type="submit" value="Guardar">
     </form>
+<section>
 {% endblock %}
