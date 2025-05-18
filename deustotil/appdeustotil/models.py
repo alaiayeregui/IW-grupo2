@@ -31,10 +31,10 @@ class Responsable(models.Model):
 
 class Proyecto(models.Model):
     nombre = models.CharField(max_length=30)
-    codigo = models.CharField(null=True, blank=True)
     descripcion = models.TextField(null = True, blank=True)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
+    codigo = models.CharField(null=True, blank=True)
     presupuesto = models.FloatField()
     cliente = models.ForeignKey(Cliente, on_delete=models.CASCADE)
     tareas = models.CharField(max_length=100)
@@ -45,7 +45,6 @@ class Proyecto(models.Model):
 class Tarea(models.Model):
     nombre = models.CharField(max_length=30)
     descripcion = models.TextField(null = True, blank=True)
-    codigo = models.CharField(null=True, blank=True)
     fecha_inicio = models.DateField()
     fecha_fin = models.DateField()
     responsable = models.ManyToManyField(Empleado)
