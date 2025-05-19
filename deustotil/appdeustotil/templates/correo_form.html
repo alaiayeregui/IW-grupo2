@@ -1,15 +1,11 @@
 {% extends "base.html" %}
 {% block content %}
 <section id="content">
-    <h1>Envía un correo al cliente:</h1>
-
+    <h1>¡Ponte en contacto con nosotros!</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Enviar correo">
+        <input type="submit" value="Enviar">
     </form>
-
-    <a href="{% url 'detalles_cliente' cliente.id %}">Volver</a>
-    
 </section>
 {% endblock %}

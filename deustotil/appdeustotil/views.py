@@ -6,8 +6,8 @@ from django.views import View
 from django.core.mail import send_mail
 from django.conf import settings
 from .models import Cliente, Empleado, Tarea, Proyecto, Responsable, Documento
-from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView
-from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm, DocumentoForm
+from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView, FormView
+from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm, DocumentoForm,  CorreoContactoForm
 
 def index(request):
     return render(request, 'index.html')
@@ -62,25 +62,9 @@ class ClienteUpdateView(UpdateView):
     template_name = 'cliente_form.html'
     success_url = reverse_lazy('clientes')
 
-#enviar emails a clientes
-class ClienteEnviarEmailView(View):
-    def post(self, request, pk):
-        cliente = get_object_or_404(Cliente, pk=pk)
-
-        # Enviar el correo
-        send_mail(
-            'Datos del cliente actualizados', 
-            f'Los datos del cliente {cliente.nombre} han sido modificados.',
-            settings.DEFAULT_FROM_EMAIL,  
-            [cliente.email_contacto], 
-        )
-        return redirect('detalles_cliente', pk=pk)
-
-
 #detalles de un proyecto
 class ProyectoDetailView(DetailView):
     model = Proyecto
-
 
 #ver todos los proyectos
 class ProyectoListView(ListView):
@@ -233,3 +217,28 @@ def buscarTarea(request):
     }
 
     return render(request, 'buscar_tareas.html', context)
+
+
+#enviar emails de contacto
+class ContactoEmailView(FormView):
+    template_name = 'correo_form.html'
+    form_class = CorreoContactoForm
+    success_url = reverse_lazy('index')
+
+    def form_valid(self, form):
+        nombre = form.cleaned_data['nombre']
+        correo = form.cleaned_data['correo']
+        asunto = form.cleaned_data['asunto']
+        mensaje = form.cleaned_data['mensaje']
+
+        mensaje_completo = f"De: {nombre} <{correo}>\n\n{mensaje}"
+
+        send_mail(
+            asunto,
+            mensaje_completo,
+            'grupo2e3y4@gmail.com',
+            ['grupo2e3y4@gmail.com'],
+            fail_silently=False,
+        )
+        return super().form_valid(form)
+

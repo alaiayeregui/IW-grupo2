@@ -123,8 +123,15 @@ STATIC_URL = '/static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-#Funcionalidad para envio de correos desde la app -> mostrar lo enviado en el terminal
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#Funcionalidad para envio de correos desde la app a grupo2e3y4@gmail.com
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend' - Envio a terminal
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'grupo2e3y4@gmail.com'
+EMAIL_HOST_PASSWORD = 'pafe ugeq bdws ihrx'
 
 #Funcionalidad para poder almacenar distintos documetnos
 MEDIA_ROOT = BASE_DIR / 'media'
