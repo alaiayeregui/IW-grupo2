@@ -31,4 +31,30 @@ document.addEventListener('DOMContentLoaded', () => {
     apellidosInput.addEventListener('input', generarEmail);
     proyectoNomInput.addEventListener('input', generarCodigoProyecto);
     proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
+
+    function cambiarEstado(tareaId) {
+        fetch('/cambiar_estado/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': getCookie('csrftoken') 
+            },
+            body: JSON.stringify({
+                id: tareaId,
+                estado: 'completado'
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                document.getElementById('estado-' + tareaId).textContent = data.estado;
+            } else {
+            alert('Error al actualizar estado');
+            }
+        });
+    }
+    const estadoButton = document.getElementById('boton-estado');
+    estadoButton.addEventListener('click', cambiarEstado);
+
+    
 });

@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
 <section id="content">
-<h2>Filtrar Tareas</h2>
+<h2>Tareas:</h2>
+<button><a href="{% url 'crear_tarea'%}">Nueva tarea</a></button>
 <form method="get">
     <label for="prioridad">Prioridad:</label>
     <select name="prioridad" id="prioridad">
@@ -19,10 +20,8 @@
             <option value="En proceso">En proceso</option>
             <option value="Finalizada">Finalizada</option>
         </select>
-    <button type="submit">Buscar</button>
+    <button type="submit">Filtrar</button>
 </form>
-
-<h3>Resultado:</h3>
 <ul>
     {% for tarea in tareas %}
         <li>
