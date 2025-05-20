@@ -35,3 +35,9 @@ class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields = ['titulo', 'documento']
+
+class CorreoContactoForm(forms.Form):
+    nombre = forms.CharField()
+    correo = forms.EmailField()
+    asunto = forms.CharField(max_length=50)
+    mensaje = forms.CharField(widget=forms.Textarea)
