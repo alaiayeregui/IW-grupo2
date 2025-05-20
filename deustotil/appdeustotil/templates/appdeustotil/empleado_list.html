@@ -2,6 +2,7 @@
 {% block content %}
 <section id="content">
     <h2>Empleados:</h2>
+    <button><a href="{% url 'crear_empleado'%}">Nuevo empleado</a></button>
     <ul>
     {% for empleado in object_list %}
         <li>    
@@ -9,6 +10,5 @@
         </li>
     {% endfor %}
     </ul>
-    <button><a href="{% url 'crear_empleado'%}">Nuevo empleado</a></button>
 </section>
 {% endblock %}

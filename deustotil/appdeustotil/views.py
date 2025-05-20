@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-
-from django.http import HttpResponse
+import json
+from django.http import HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.views import View
 from django.core.mail import send_mail
@@ -180,10 +180,25 @@ class ResponsableUpdateView(UpdateView):
     template_name = 'responsable_form.html'
     success_url = reverse_lazy('responsables')
 
-#mostrar todas las tareas
-class TareaListView(ListView):
-    model = Tarea
-    queryset = Tarea.objects.all()
+#filtrado y listado de tareas por la prioridad y estado
+def TareaFiltrarLista(request):
+    prioridad = request.GET.get('prioridad', '')
+    estado = request.GET.get('estado', '')
+    tareas = Tarea.objects.all()
+
+    if prioridad:
+        tareas = tareas.filter(prioridad=prioridad)
+    if estado:
+        tareas = tareas.filter(estado=estado)
+
+    context = {
+        'tareas': tareas,
+        'prioridad': prioridad,
+        'estado': estado,
+    }
+
+    return render(request, 'tarea_list.html', context)
+
 
 #detalles de una tarea
 class TareaDetailView(DetailView):
@@ -215,21 +230,16 @@ class TareaNotasUpdateView(UpdateView):
     template_name = 'tarea_notas_form.html'
     success_url = reverse_lazy('tareas')
 
-#filtrado de tareas por la prioridad y estado
-def buscarTarea(request):
-    prioridad = request.GET.get('prioridad', '')
-    estado = request.GET.get('estado', '')
-    tareas = Tarea.objects.all()
+def cambiar_estado(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        proyecto_id = data.get('id')
+        nuevo_estado = data.get('estado')
 
-    if prioridad:
-        tareas = tareas.filter(prioridad=prioridad)
-    if estado:
-        tareas = tareas.filter(estado=estado)
-
-    context = {
-        'tareas': tareas,
-        'prioridad': prioridad,
-        'estado': estado,
-    }
-
-    return render(request, 'buscar_tareas.html', context)
+        try:
+            tarea = Tarea.objects.get(id=proyecto_id)
+            tarea.estado = nuevo_estado
+            tarea.save()
+            return JsonResponse({'success': True, 'estado': tarea.estado})
+        except Tarea.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Tarea no encontrada'}, status=404)
