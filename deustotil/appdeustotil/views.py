@@ -76,11 +76,24 @@ class ClienteUpdateView(UpdateView):
 class ProyectoDetailView(DetailView):
     model = Proyecto
 
-#ver todos los proyectos
+#ver todos los proyectos con el cambio de estado
 class ProyectoListView(ListView):
     model = Proyecto
     queryset = Proyecto.objects.all()
     template_name = 'proyecto_list.html'
+
+    def post(self, request, *args, **kwargs):
+        data = json.loads(request.body)
+        proyecto_id = data.get('id')
+        nuevo_estado = data.get('estado')
+
+        try:
+            proyecto = Proyecto.objects.get(id=proyecto_id)
+            proyecto.estado = nuevo_estado
+            proyecto.save()
+            return JsonResponse({'success': True, 'estado': proyecto.estado})
+        except Proyecto.DoesNotExist:
+            return JsonResponse({'success': False, 'error': 'Proyecto no encontrado'}, status=404)
 
 #crear un proyecto nuevo
 class ProyectoCreateView(CreateView):

@@ -44,32 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
     }
 
-    function cambiarEstado(tareaId) {
-        fetch('/cambiar_estado/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken') 
-            },
-            body: JSON.stringify({
-                id: tareaId,
-                estado: 'completado'
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('estado-' + tareaId).textContent = data.estado;
-            } else {
-            alert('Error al actualizar estado');
-            }
-        });
-    }
-    const estadoButton = document.getElementById('boton-estado');
-    if (estadoButton != null){
-        estadoButton.addEventListener('click', cambiarEstado);
-    }
-
     function validarCliente(){
         let nombre = clienteNombreInput.value.trim();
         if (nombre != null && nombre != ""){
@@ -136,7 +110,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Funcion para esperar 1 segundos antes de validar cada campo de cliente
     function debounceValidarCliente() {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(validarCliente, 1000); // 1000 ms = 1 segundos
+        debounceTimer = setTimeout(validarCliente, 1000); //1000 ms = 1 segundos
     }
 
     if (clienteNombreInput != null){

@@ -3,13 +3,30 @@
 <section id="content">
     <h2>Proyectos:</h2>
     <button><a href="{% url 'crear_proyecto'%}">Nuevo proyecto</a></button>
-    <ul>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Presupuesto</th>
+            <th>Cliente</th>
+            <th>Estado</th>
+        </tr>
     {% for proyecto in object_list %}
-        <li>    
-            <a href="{% url 'detalles_proyecto' proyecto.id %}">{{ proyecto.nombre}}</a>
-            <button id="boton-estado">Cambiar estado</button>
-        </li>
+            <tr>
+                <td>
+                    <a href="{% url 'detalles_proyecto' proyecto.id %}">{{ proyecto.nombre}}</a>
+                </td>
+                <td>
+                    {{ proyecto.presupuesto }}
+                </td>
+                <td>
+                    {{ proyecto.cliente }}
+                </td>
+                <td >
+                    <p id="estado-{{ proyecto.id }}">{{ proyecto.estado }}</p>
+                    <button class="boton-cambiar-estado" data-id="{{ proyecto.id }}">Cambiar estado</button>
+                </td>
+            </tr>
     {% endfor %}
-    </ul>
+    </table>
 </section>
 {% endblock %}
