@@ -35,6 +35,11 @@ class DocumentoForm(forms.ModelForm):
     class Meta:
         model = Documento
         fields = ['titulo', 'documento']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['titulo'].required = False
+        self.fields['documento'].required = False
 
 class CorreoContactoForm(forms.Form):
     nombre = forms.CharField()

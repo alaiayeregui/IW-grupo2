@@ -54,6 +54,11 @@ class ClienteCreateView(CreateView):
     form_class = ClienteForm
     template_name = 'cliente_form.html'
     success_url = reverse_lazy('clientes')
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['auto_id'] = 'cliente_%s' 
+        return kwargs
 
 #actualizar información de un cliente
 class ClienteUpdateView(UpdateView):
@@ -61,6 +66,11 @@ class ClienteUpdateView(UpdateView):
     form_class = ClienteForm
     template_name = 'cliente_form.html'
     success_url = reverse_lazy('clientes')
+
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['auto_id'] = 'cliente_%s' 
+        return kwargs
 
 #detalles de un proyecto
 class ProyectoDetailView(DetailView):

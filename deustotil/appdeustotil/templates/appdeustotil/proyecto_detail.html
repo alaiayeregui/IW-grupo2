@@ -6,15 +6,16 @@
     <p><strong>Fecha de inicio:</strong> {{proyecto.fecha_inicio}}</p>
     <p><strong>Fecha de fin:</strong> {{proyecto.fecha_fin}}</p>
     <p><strong>Presupuesto:</strong> {{proyecto.presupuesto}}</p>
+    <p><strong>Estado:</strong> {{proyecto.estado}}</p>
     <p><strong>Tareas:</strong> </p>
     <ul>
-    {% for tareas in proyecto.tarea.all %}  
+    {% for tarea in proyecto.tarea_set.all %}  
         <li>
             <a>{{ tarea.nombre }}</a>
         </li>
     {% empty %} 
         <li>
-            No tiene responsable identificado.
+            No tiene tareas.
         </li>
     {% endfor %}
     </ul>

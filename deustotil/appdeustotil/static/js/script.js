@@ -9,6 +9,15 @@ document.addEventListener('DOMContentLoaded', () => {
     const proyectoFechaInput = document.getElementById('proyecto_fecha_inicio');
     const proyectoCodigoInput = document.getElementById('proyecto_codigo');
 
+    // inputs del formulario cliente
+    const clienteNombreInput = document.getElementById('cliente_nombre');
+    const clienteCIFInput = document.getElementById('cliente_CIF');
+    const clienteDireccionInput = document.getElementById('cliente_direccion');
+    const clientePersonaContactoInput = document.getElementById('cliente_persona_contacto');
+    const clienteEmailContactoInput = document.getElementById('cliente_email_contacto');
+    const clienteNumContactoInput = document.getElementById('cliente_num_contacto');
+    const clientePagoInput = document.getElementById('cliente_pago');
+
     function generarEmail() {
         const nombre = nombreInput.value.trim().toLowerCase();
         const apellido = apellidosInput.value.trim().split(" ")[0].toLowerCase();
@@ -26,11 +35,15 @@ document.addEventListener('DOMContentLoaded', () => {
             proyectoCodigoInput.value = `${nombreProyecto}_${fecha}`;
         }
     }
+    if (nombreInput != null){
+        nombreInput.addEventListener('input', generarEmail);
+        apellidosInput.addEventListener('input', generarEmail);
+    }
 
-    nombreInput.addEventListener('input', generarEmail);
-    apellidosInput.addEventListener('input', generarEmail);
-    proyectoNomInput.addEventListener('input', generarCodigoProyecto);
-    proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
+    if (proyectoNomInput != null){
+        proyectoNomInput.addEventListener('input', generarCodigoProyecto);
+        proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
+    }
 
     function cambiarEstado(tareaId) {
         fetch('/cambiar_estado/', {
@@ -54,7 +67,71 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
     const estadoButton = document.getElementById('boton-estado');
-    estadoButton.addEventListener('click', cambiarEstado);
+    if (estadoButton != null){
+        estadoButton.addEventListener('click', cambiarEstado);
+    }
 
+    function validarCliente(){
+        let nombre = clienteNombreInput.value.trim();
+        if (nombre != null && nombre != ""){
+            // Expresión regular: una mayúscula seguida de solo letras minúsculas
+            let regex = /^[A-Z][a-z]+$/;
+
+            if (regex.test(nombre)) {
+                //Comprobamos si no hay error, se podria comentar mas adelante
+                console.log("Nombre válido");
+            } else {
+                alert("El nombre tiene que empezar por mayuscula y solo contener letras");
+            }
+        }
+        let cif = clienteCIFInput.value.trim();
+        if (cif != null && cif != ""){
+            let regex = /^[A-Z][0-9]+$/;
+            if (regex.test(cif)){
+                 //Comprobamos si no hay error, se podria comentar mas adelante
+                console.log("CIF válido");
+            } else {
+                alert("El CIF tiene que empezar por mayuscula y solo contener numeros despues");
+            }
+        }
+        let direccion = clienteDireccionInput.value.trim().toLowerCase();
+        //Tengo que mirarlo despacio
+        let personaContacto = clientePersonaContactoInput.value;
+        if (personaContacto != null && personaContacto != ""){
+            let regex = /^[A-Z][a-z]+ [A-Z][a-z]+$/;
+
+            if (personaContacto !== "") {
+                if (regex.test(personaContacto)) {
+                    personaError.textContent = "";
+                    clientePersonaContactoInput.style.border = "";
+                } else {
+                    personaError.textContent = "Debe ingresar nombre y apellido con la primera letra en mayúscula.";
+                    clientePersonaContactoInput.style.border = "2px solid red";
+                }
+            }
+        }
+        let emailContacto = clienteEmailContactoInput.value.trim().toLowerCase();
+        let numContacto = clienteNumContactoInput.value.trim().toLowerCase();
+        let pago = clientePagoInput.value.trim().toLowerCase();
+    }
+
+    let debounceTimer;
+
+    //Funcion para esperar 2 segundos antes de validar cada campo de cliente
+    function debounceValidarCliente() {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(validarCliente, 1000); // 1000 ms = 1 segundos
+    }
+
+    if (clienteNombreInput != null){
+        clienteNombreInput.addEventListener('input', debounceValidarCliente);
+        clienteCIFInput.addEventListener('input', debounceValidarCliente);
+        clienteDireccionInput.addEventListener('input', debounceValidarCliente);
+        clientePersonaContactoInput.addEventListener('input', debounceValidarCliente);
+        clienteEmailContactoInput.addEventListener('input', debounceValidarCliente);
+        clienteNumContactoInput.addEventListener('input', debounceValidarCliente);
+        clientePagoInput.addEventListener('input', debounceValidarCliente);
+    }
     
+
 });
