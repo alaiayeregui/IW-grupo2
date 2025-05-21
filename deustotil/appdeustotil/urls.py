@@ -1,6 +1,9 @@
 from django.urls import path
 from . import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('', views.index, name='index'),
     path('empleados', views.EmpleadoListView.as_view(), name='empleados'),
@@ -31,3 +34,7 @@ urlpatterns = [
     path('<int:pk>/modificar_tarea', views.TareaUpdateView.as_view(), name='modificar_tarea'),
     path('<int:pk>/modificar_tarea_notas', views.TareaNotasUpdateView.as_view(), name='modificar_tarea_notas'),
 ]
+
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

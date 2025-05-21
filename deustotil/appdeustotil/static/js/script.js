@@ -16,7 +16,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const clientePersonaContactoInput = document.getElementById('cliente_persona_contacto');
     const clienteEmailContactoInput = document.getElementById('cliente_email_contacto');
     const clienteNumContactoInput = document.getElementById('cliente_num_contacto');
-    const clientePagoInput = document.getElementById('cliente_pago');
 
     function generarEmail() {
         const nombre = nombreInput.value.trim().toLowerCase();
@@ -102,22 +101,39 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (personaContacto !== "") {
                 if (regex.test(personaContacto)) {
-                    personaError.textContent = "";
-                    clientePersonaContactoInput.style.border = "";
+                    console.log("Es valido");
                 } else {
-                    personaError.textContent = "Debe ingresar nombre y apellido con la primera letra en mayúscula.";
-                    clientePersonaContactoInput.style.border = "2px solid red";
+                    alert("Debe ingresar nombre y apellido con la primera letra en mayúscula.");
                 }
             }
         }
-        let emailContacto = clienteEmailContactoInput.value.trim().toLowerCase();
+        let emailContacto = clienteEmailContactoInput.value.toLowerCase();
+        let emailSinEspacios = emailContacto.trim();
+        if (emailContacto == emailSinEspacios){
+            if (emailContacto.endsWith(".es") || emailContacto.endsWith(".com")){
+                    console.log("Es valido");
+            } else {
+                alert("El correo no finaliza con .es o .com");
+            }
+        } else {
+            alert("El email no debe contener espacios.");
+        }
         let numContacto = clienteNumContactoInput.value.trim().toLowerCase();
-        let pago = clientePagoInput.value.trim().toLowerCase();
+        if (numContacto != null && numContacto != ""){
+            let regex = /^[0-9]+$/;
+            if (regex.test(numContacto)){
+                 //Comprobamos si no hay error, se podria comentar mas adelante
+                console.log("El numero de contacto es válido");
+            } else {
+                alert("El numero del contacto debe contenes solo numeros");
+            }
+        }
     }
 
+    //Variable para calcular el tiempo
     let debounceTimer;
 
-    //Funcion para esperar 2 segundos antes de validar cada campo de cliente
+    //Funcion para esperar 1 segundos antes de validar cada campo de cliente
     function debounceValidarCliente() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(validarCliente, 1000); // 1000 ms = 1 segundos
@@ -130,7 +146,6 @@ document.addEventListener('DOMContentLoaded', () => {
         clientePersonaContactoInput.addEventListener('input', debounceValidarCliente);
         clienteEmailContactoInput.addEventListener('input', debounceValidarCliente);
         clienteNumContactoInput.addEventListener('input', debounceValidarCliente);
-        clientePagoInput.addEventListener('input', debounceValidarCliente);
     }
     
 
