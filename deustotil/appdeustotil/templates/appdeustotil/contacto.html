@@ -1,11 +1,12 @@
 {% extends "base.html" %}
 {% block content %}
 <section id="content">
-    <h1>Ponte en contacto con nosotros</h1>
+    <h1>Confirma el envío del mensaje</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" value="Enviar">
+        <button type="submit">Sí, enviar</button>
+        <button><a href="{% url 'index' %}">Cancelar</a></button>
     </form>
 </section>
 {% endblock %}

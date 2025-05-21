@@ -46,7 +46,7 @@ header button{
     border: none;
 }
 
-header button :hover{
+header button:hover{
     font-weight: 900;
     text-decoration: underline;
 }

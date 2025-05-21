@@ -147,6 +147,52 @@ document.addEventListener('DOMContentLoaded', () => {
         clienteEmailContactoInput.addEventListener('input', debounceValidarCliente);
         clienteNumContactoInput.addEventListener('input', debounceValidarCliente);
     }
-    
+
+    // accesibilidad: Click para editar tamaño del texto
+    // selecciona el tamaño actual como escala (1), sumandole o restandole 0.1 según lo que indique el usuario
+    let escala = 1;
+    const paso = 0.1;
+    const tamañosOriginales = new Map();
+    let tamañosGuardados = false;
+
+    const etiquetasTexto = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'a', 'li', 'td', 'th', 'label', 'div', 'button', 'form'];
+
+    // funcion que guarda el tamaño de fuente original de los elemento, una única vez gracias a "tamañosGuardados"
+    function guardarTamañosOriginales() {
+        etiquetasTexto.forEach(tag => {
+            document.querySelectorAll(tag).forEach(el => {
+                if (!tamañosOriginales.has(el)) {
+                    const tamañoBase = parseFloat(getComputedStyle(el).fontSize);
+                    tamañosOriginales.set(el, tamañoBase);
+                }
+            });
+        });
+        tamañosGuardados = true;
+    }
+
+    // funcion que establece el nuevo tamaño del texto
+    function aplicarEscala() {
+        tamañosOriginales.forEach((tamañoOriginal, el) => {
+            el.style.fontSize = (tamañoOriginal * escala) + 'px';
+        });
+    }
+
+    // funcion que ejecuta las funciones anteriores una vez se pulsa uno de los botones
+    function ajustarTamañoTexto(factor) {
+        if (!tamañosGuardados) {
+            guardarTamañosOriginales();
+        }
+
+        escala += factor;
+        if (escala < 0.5) escala = 0.5;
+        if (escala > 2) escala = 2;
+
+        aplicarEscala();
+    }
+
+    // según el botón pulsado, señala a la función de aumento/reducción
+    document.getElementById('btnAumentar')?.addEventListener('click', () => ajustarTamañoTexto(paso));
+    document.getElementById('btnReducir')?.addEventListener('click', () => ajustarTamañoTexto(-paso));
 
 });
+
