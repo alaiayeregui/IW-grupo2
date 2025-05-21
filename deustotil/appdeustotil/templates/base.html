@@ -11,6 +11,8 @@
         <a href="{% url 'index' %}">
             <img src="{% static 'imagenes/logo.png' %}" alt="logo deustotil">
         </a>
+
+        <!--Navegacion entre menús-->
         <section>
             <button>
                 <a href="{% url 'empleados' %}">Empleados</a>
@@ -30,6 +32,13 @@
             <button>
                 <a href="{% url 'correo_contacto' %}">Contacto</a>
             </button>
+            <button id="btnAumentar">
+                <a>A+</a>
+            </button>
+            <button id="btnReducir">
+                <a>A-</a>
+            </button>
+        </section>
     </header>
     <article>
         {% block content %}
