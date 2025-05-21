@@ -129,9 +129,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tamañosOriginales = new Map();
     let tamañosGuardados = false;
 
-    const etiquetasTexto = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'a', 'li', 'td', 'th', 'label', 'div', 'button', 'form'];
+    const etiquetasTexto = [ 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'a', 'li', 'td', 'th', 'label', 'div', 'button',
+    'form', 'input', 'textarea', 'select', 'option', 'fieldset'];
 
-    // funcion que guarda el tamaño de fuente original de los elemento, una única vez gracias a "tamañosGuardados"
+    // funcion que guarda el tamaño de fuente original de los elementos
     function guardarTamañosOriginales() {
         etiquetasTexto.forEach(tag => {
             document.querySelectorAll(tag).forEach(el => {
@@ -158,8 +159,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         escala += factor;
-        if (escala < 0.5) escala = 0.5;
-        if (escala > 2) escala = 2;
+        if (escala < 0.8) escala = 0.8;
+        if (escala > 1.2) escala = 1.2;
 
         aplicarEscala();
     }
