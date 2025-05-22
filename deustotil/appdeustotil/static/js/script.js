@@ -171,3 +171,56 @@ document.addEventListener('DOMContentLoaded', () => {
 
 });
 
+// funcion para conseguir el token CSRF 
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (const cookie of cookies) {
+            const trimmed = cookie.trim();
+            if (trimmed.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(trimmed.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+//
+document.addEventListener('DOMContentLoaded', () => {
+    
+    document.querySelectorAll('.estado-select').forEach(select => {
+        
+        select.addEventListener('change', () => {
+            // obtiene la tarea y su nuevo estado
+            const tareaId = select.dataset.tareaId;
+            const nuevoEstado = select.value;
+
+            // petición POST usando fetch 
+            fetch(`/deustotil/tarea/${tareaId}/cambiar_estado/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                //envia el nuevo estado
+                body: JSON.stringify({ nuevo_estado: nuevoEstado })
+            })
+
+            .then(response => response.json())
+            .then(data => {
+                // si se ha actualizado muestra mensaje de confirmación, sino error
+                if (data.message) {
+                    alert(data.message);
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error de red: ' + error);
+            });
+        });
+    });
+});
+

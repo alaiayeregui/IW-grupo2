@@ -33,6 +33,7 @@ urlpatterns = [
     path('<int:pk>/delete_tarea', views.TareaDeleteView.as_view(), name='delete_tarea'),
     path('<int:pk>/modificar_tarea', views.TareaUpdateView.as_view(), name='modificar_tarea'),
     path('<int:pk>/modificar_tarea_notas', views.TareaNotasUpdateView.as_view(), name='modificar_tarea_notas'),
+      path('tarea/<int:tarea_id>/cambiar_estado/', views.cambiar_estado_tarea, name='cambiar_estado_tarea'),
 ]
 
 
