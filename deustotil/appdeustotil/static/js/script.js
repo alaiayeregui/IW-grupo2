@@ -44,32 +44,6 @@ document.addEventListener('DOMContentLoaded', () => {
         proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
     }
 
-    function cambiarEstado(tareaId) {
-        fetch('/cambiar_estado/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'X-CSRFToken': getCookie('csrftoken') 
-            },
-            body: JSON.stringify({
-                id: tareaId,
-                estado: 'completado'
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                document.getElementById('estado-' + tareaId).textContent = data.estado;
-            } else {
-            alert('Error al actualizar estado');
-            }
-        });
-    }
-    const estadoButton = document.getElementById('boton-estado');
-    if (estadoButton != null){
-        estadoButton.addEventListener('click', cambiarEstado);
-    }
-
     function validarCliente(){
         let nombre = clienteNombreInput.value.trim();
         if (nombre != null && nombre != ""){
@@ -138,7 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
     //Funcion para esperar 1 segundos antes de validar cada campo de cliente
     function debounceValidarCliente() {
         clearTimeout(debounceTimer);
-        debounceTimer = setTimeout(validarCliente, 1000); // 1000 ms = 1 segundos
+        debounceTimer = setTimeout(validarCliente, 1000); //1000 ms = 1 segundos
     }
 
     if (clienteNombreInput != null){
@@ -157,9 +131,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const tamañosOriginales = new Map();
     let tamañosGuardados = false;
 
-    const etiquetasTexto = ['p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'a', 'li', 'td', 'th', 'label', 'div', 'button', 'form'];
+    const etiquetasTexto = [ 'p', 'h1', 'h2', 'h3', 'h4', 'h5', 'h6', 'span', 'a', 'li', 'td', 'th', 'label', 'div', 'button',
+    'form', 'input', 'textarea', 'select', 'option', 'fieldset'];
 
-    // funcion que guarda el tamaño de fuente original de los elemento, una única vez gracias a "tamañosGuardados"
+    // funcion que guarda el tamaño de fuente original de los elementos
     function guardarTamañosOriginales() {
         etiquetasTexto.forEach(tag => {
             document.querySelectorAll(tag).forEach(el => {
@@ -186,8 +161,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         escala += factor;
-        if (escala < 0.5) escala = 0.5;
-        if (escala > 2) escala = 2;
+        if (escala < 0.8) escala = 0.8;
+        if (escala > 1.2) escala = 1.2;
 
         aplicarEscala();
     }
