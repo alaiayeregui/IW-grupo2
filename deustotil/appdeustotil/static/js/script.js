@@ -109,14 +109,16 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         let emailContacto = clienteEmailContactoInput.value.toLowerCase();
         let emailSinEspacios = emailContacto.trim();
-        if (emailContacto == emailSinEspacios){
-            if (emailContacto.endsWith(".es") || emailContacto.endsWith(".com")){
-                    console.log("Es valido");
+        if (emailContacto != null && emailContacto != ""){
+            if (emailContacto == emailSinEspacios){
+                if (emailContacto.endsWith(".es") || emailContacto.endsWith(".com")){
+                        console.log("Es valido");
+                } else {
+                    alert("El correo no finaliza con .es o .com");
+                }
             } else {
-                alert("El correo no finaliza con .es o .com");
+                alert("El email no debe contener espacios.");
             }
-        } else {
-            alert("El email no debe contener espacios.");
         }
         let numContacto = clienteNumContactoInput.value.trim().toLowerCase();
         if (numContacto != null && numContacto != ""){
