@@ -22,8 +22,8 @@
                     {{ proyecto.cliente }}
                 </td>
                 <td >
-                    <p id="estado-{{ proyecto.id }}">{{ proyecto.estado }}</p>
-                    <button class="boton-cambiar-estado" data-id="{{ proyecto.id }}">Cambiar estado</button>
+                    <p id="estado-{{proyecto.id}}">{{ proyecto.estado }}</p>
+                    <button class="estado-boton" data-proyecto-id="{{ proyecto.id }}">Cambiar estado</button>
                 </td>
             </tr>
     {% endfor %}

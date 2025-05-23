@@ -1,5 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
 import json
+from django.views.decorators.http import require_POST
 from django.http import HttpResponse, JsonResponse
 from django.urls import reverse_lazy
 from django.views import View
@@ -82,19 +83,6 @@ class ProyectoListView(ListView):
     model = Proyecto
     queryset = Proyecto.objects.all()
     template_name = 'proyecto_list.html'
-
-    def post(self, request, *args, **kwargs):
-        data = json.loads(request.body)
-        proyecto_id = data.get('id')
-        nuevo_estado = data.get('estado')
-
-        try:
-            proyecto = Proyecto.objects.get(id=proyecto_id)
-            proyecto.estado = nuevo_estado
-            proyecto.save()
-            return JsonResponse({'success': True, 'estado': proyecto.estado})
-        except Proyecto.DoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Proyecto no encontrado'}, status=404)
 
 #crear un proyecto nuevo
 class ProyectoCreateView(CreateView):
@@ -293,3 +281,17 @@ def cambiar_estado_tarea(request, tarea_id):
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
     return JsonResponse({'error': 'Método no permitido'}, status=405)
+
+@require_POST
+def cambiar_estado_proyecto(request, pk):
+    try:
+        data = json.loads(request.body)
+        nuevo_estado = data.get('nuevo_estado')
+        proyecto = Proyecto.objects.get(pk=pk)
+        proyecto.estado = nuevo_estado
+        proyecto.save()
+        return JsonResponse({'message': 'Estado actualizado correctamente'})
+    except Proyecto.DoesNotExist:
+        return JsonResponse({'error': 'Proyecto no encontrado'}, status=404)
+    except Exception as e:
+        return JsonResponse({'error': str(e)}, status=500)

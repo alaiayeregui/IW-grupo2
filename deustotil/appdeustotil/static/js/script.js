@@ -224,5 +224,39 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
     });
+
+    document.querySelectorAll('.estado-boton').forEach(boton => {
+
+        boton.addEventListener('click', () => {
+            const proyectoId = boton.dataset.proyectoId;
+            const estadoElemento = document.getElementById(`estado-${proyectoId}`)
+            let estadoActual = estadoElemento.textContent.trim();
+            let nuevoEstado = estadoActual === 'pendiente' ? 'completado' : 'pendiente';
+            fetch(`/deustotil/proyecto/${proyectoId}/cambiar_estado/`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': getCookie('csrftoken'),
+                },
+                
+                //envia el nuevo estado
+                body: JSON.stringify({ nuevo_estado: nuevoEstado })
+            })
+
+            .then(response => response.json())
+            .then(data => {
+                // al actualizar cambia el texto del estado en la tabla
+                if (data.message) {
+                    estadoElemento.textContent = nuevoEstado;
+                } else {
+                    alert('Error: ' + data.error);
+                }
+            })
+            .catch(error => {
+                alert('Error de red: ' + error);
+            });
+        });
+    });
+
 });
 
