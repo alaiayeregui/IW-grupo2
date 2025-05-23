@@ -8,6 +8,7 @@ from django.conf import settings
 from .models import Cliente, Empleado, Tarea, Proyecto, Responsable, Documento
 from django.views.generic import DetailView, ListView, CreateView, DeleteView, UpdateView, FormView
 from .forms import EmpleadoForm, ClienteForm, ProyectoForm, ResponsableForm, TareaForm, TareaNotasForm, DocumentoForm,  CorreoContactoForm
+from django.views.decorators.csrf import csrf_exempt
 
 def index(request):
     return render(request, 'index.html')
@@ -275,3 +276,20 @@ class ContactoEmailView(FormView):
         )
         return super().form_valid(form)
 
+#Cambiar el estado de una tarea
+@csrf_exempt
+def cambiar_estado_tarea(request, tarea_id):
+    #peticiones POST para modificar el valor del estado
+    if request.method == 'POST':
+        try:
+            data = json.loads(request.body) 
+            nuevo_estado = data.get('nuevo_estado') #se obtiene el nuevo estado del request
+            tarea = Tarea.objects.get(id=tarea_id)
+            tarea.estado = nuevo_estado
+            tarea.save() #se guarda el cambio en la base de datos
+            
+            #mensajes o de actualización correcta o de error por no ser POST
+            return JsonResponse({'message': 'Estado actualizado correctamente'})
+        except Exception as e:
+            return JsonResponse({'error': str(e)}, status=400)
+    return JsonResponse({'error': 'Método no permitido'}, status=405)
