@@ -4,11 +4,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const apellidosInput = document.getElementById('id_apellidos');
     const emailInput = document.getElementById('id_email');
 
-    // inputs del formulario proyecto
-    const proyectoNomInput = document.getElementById('proyecto_nombre');
-    const proyectoFechaInput = document.getElementById('proyecto_fecha_inicio');
-    const proyectoCodigoInput = document.getElementById('proyecto_codigo');
-
     // inputs del formulario cliente
     const clienteNombreInput = document.getElementById('cliente_nombre');
     const clienteCIFInput = document.getElementById('cliente_CIF');
@@ -25,23 +20,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function generarCodigoProyecto() {
-        const nombreProyecto = proyectoNomInput.value.trim().toUpperCase();
-        var fecha = proyectoFechaInput.value;
-        fecha = fecha.replace('-', '/');
-
-        if (nombreProyecto && fecha) {
-            proyectoCodigoInput.value = `${nombreProyecto}_${fecha}`;
-        }
-    }
     if (nombreInput != null){
         nombreInput.addEventListener('input', generarEmail);
         apellidosInput.addEventListener('input', generarEmail);
-    }
-
-    if (proyectoNomInput != null){
-        proyectoNomInput.addEventListener('input', generarCodigoProyecto);
-        proyectoFechaInput.addEventListener('input', generarCodigoProyecto);
     }
 
     function validarCliente(){
