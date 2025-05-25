@@ -3,12 +3,26 @@
 <section id="content">
     <h2>Empleados:</h2>
     <button><a href="{% url 'crear_empleado'%}">Nuevo empleado</a></button>
-    <ul>
-    {% for empleado in object_list %}
-        <li>    
-            <a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.nombre }} {{empleado.apellidos}}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Email</th>
+        </tr>
+
+        {% for empleado in object_list %}
+        <tr>
+            <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.nombre }}</a></td>
+            <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.apellidos }}</a></td>
+            <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.DNI}}</a></td>
+            <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.email }}</a></td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No se encontraron empleados.</td>
+        </tr>
+        {% endfor %}
+    </table>
 </section>
 {% endblock %}

@@ -3,12 +3,25 @@
 <section id="content">
     <h2>Responsables:</h2>
     <button><a href="{% url 'crear_responsable'%}">Nuevo responsable</a></button>
-    <ul>
-    {% for responsable in object_list %}
-        <li>    
-            <a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.nombre}} {{ responsable.apellidos}}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <table class="tabla_tareas">
+        <tr>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>DNI</th>
+            <th>Cargo</th>
+        </tr>
+        {% for responsable in object_list %}
+        <tr>
+            <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.nombre }}</a></td>
+            <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.apellidos }}</a></td>
+            <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.DNI }}</a></td>
+            <td>{{ responsable.cargo }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No se encontraron responsables.</td>
+        </tr>
+        {% endfor %}
+    </table>
 </section>
 {% endblock %}
