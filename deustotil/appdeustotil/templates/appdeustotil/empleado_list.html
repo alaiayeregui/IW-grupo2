@@ -15,11 +15,15 @@
             <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.nombre }}</a></td>
             <td><a href="{% url 'detalles_empleado' empleado.id %}">{{ empleado.apellidos }}</a></td>
             <td>
+                <ul>
                 {% for tarea in empleado.tarea_set.all %}
-                    <a href="{% url 'detalles_tarea' tarea.pk %}">{{ tarea.nombre }}</a>
+                    <li>
+                        <a href="{% url 'detalles_tarea' tarea.pk %}">{{ tarea.nombre }}</a>
+                    </li>
                 {% empty %}
                     No tiene tareas asignadas
                 {% endfor %}
+                </ul>
             </td>
         </tr>
         {% empty %}

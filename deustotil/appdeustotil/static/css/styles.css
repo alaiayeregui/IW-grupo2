@@ -205,6 +205,12 @@ article section button a:hover{
     color: white
 }
 
+.estado-boton {
+    font-size: 11px;
+    padding: 10px;
+    border-radius: 20px;
+}
+
 /* Estilo para los formularios */
 form {
     max-width: 600px;

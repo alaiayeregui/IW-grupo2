@@ -22,25 +22,6 @@
         </select>
     <button type="submit">Filtrar</button>
 </form>
-<<<<<<< HEAD
-<ul>
-    {% for tarea in tareas %}
-        <li>
-            <a href="{% url 'detalles_tarea' tarea.id %}">{{ tarea.nombre }}</a>
-            {# Aquí añadimos un selector para cambiar el estado de la tarea directamente desde la lista #}
-            <select class="estado-select" data-tarea-id="{{ tarea.id }}">
-                <!--cada opcion es un estado, la marcada es la que coincide con el estado real de la tarea-->
-                <option value="Abierta" {% if tarea.estado == "Abierta" %}selected{% endif %}>Abierta</option>
-                <option value="Asignada" {% if tarea.estado == "Asignada" %}selected{% endif %}>Asignada</option>
-                <option value="En proceso" {% if tarea.estado == "En proceso" %}selected{% endif %}>En proceso</option>
-                <option value="Finalizada" {% if tarea.estado == "Finalizada" %}selected{% endif %}>Finalizada</option>
-            </select>
-        </li>
-    {% empty %}
-        <li>No se encontraron tareas con esos filtros.</li>
-    {% endfor %}
-</ul>
-=======
 <table>
         <tr>
             <th>Tarea</th>
@@ -72,6 +53,5 @@
         </tr>
         {% endfor %}
     </table>
->>>>>>> ce47c8f84bde5b15063b0f6e47e63f4efcf3be29
 </section>
 {% endblock %}
