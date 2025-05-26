@@ -3,12 +3,25 @@
 <section id="content">
     <h2>Clientes:</h2>
     <button><a href="{% url 'crear_cliente'%}">Nuevo cliente</a></button>
-    <ul>
-    {% for cliente in object_list %}
-        <li>    
-            <a href="{% url 'detalles_cliente' cliente.id %}">{{ cliente.nombre}}</a>
-        </li>
-    {% endfor %}
-    </ul>
+    <table class="tabla_tareas">
+        <tr>
+            <th>Nombre</th>
+            <th>CIF</th>
+            <th>Email de contacto</th>
+            <th>Dirección</th>
+        </tr>
+        {% for cliente in object_list %}
+        <tr>
+            <td><a href="{% url 'detalles_cliente' cliente.id %}">{{ cliente.nombre }}</a></td>
+            <td>{{ cliente.CIF }}</td>
+            <td>{{ cliente.email_contacto }}</td>
+            <td>{{ cliente.direccion }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td>No se encontraron clientes.</td>
+        </tr>
+        {% endfor %}
+    </table>
 </section>
 {% endblock %}

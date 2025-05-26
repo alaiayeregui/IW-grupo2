@@ -152,8 +152,8 @@ article section ul li {
     font-size: 18px;
 }
 
-.estado-boton{
-    font-size: 10px;
+.estado-select{
+    font-size: 16px;
     border-radius: 20px;
     padding: 5px;
 }

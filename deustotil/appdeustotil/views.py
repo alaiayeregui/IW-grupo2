@@ -275,7 +275,6 @@ def cambiar_estado_tarea(request, tarea_id):
             return JsonResponse({'message': 'Estado actualizado correctamente'})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
-    return JsonResponse({'error': 'Método no permitido'}, status=405)
 
 @require_POST
 def cambiar_estado_proyecto(request, pk):
