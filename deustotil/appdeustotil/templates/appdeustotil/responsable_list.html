@@ -8,18 +8,25 @@
             <th>Nombre</th>
             <th>Apellidos</th>
             <th>DNI</th>
+            <th>Proyectos</th>
             <th>Cargo</th>
-        </tr>
         {% for responsable in object_list %}
         <tr>
             <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.nombre }}</a></td>
             <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.apellidos }}</a></td>
             <td><a href="{% url 'detalles_responsable' responsable.id %}">{{ responsable.DNI }}</a></td>
+            <td>
+                {% for proyecto in responsable.proyecto_set.all %}
+                    <a href="{% url 'detalles_proyecto' proyecto.pk %}">{{ proyecto.nombre }}</a>
+                {% empty %}
+                    Sin proyectos
+                {% endfor %}
+            </td>
             <td>{{ responsable.cargo }}</td>
         </tr>
         {% empty %}
         <tr>
-            <td>No se encontraron responsables.</td>
+            <td>Sin responsables</td>
         </tr>
         {% endfor %}
     </table>

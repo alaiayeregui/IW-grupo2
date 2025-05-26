@@ -34,10 +34,10 @@
             <td>
                 <a href="{% url 'detalles_tarea' tarea.id %}">{{ tarea.nombre }}</a>
             </td>
-            <td>{{ tarea.proyecto.nombre }}</td>
+            <td>{{ tarea.proyecto.nombre }}</a></td>
             <td>{{ tarea.prioridad }}</td>
             <td>
-                {# Aquí añadimos un selector para cambiar el estado de la tarea directamente desde la lista #}
+                <!--Aquí añadimos un selector para cambiar el estado de la tarea directamente desde la lista--> 
                 <select class="estado-select" data-tarea-id="{{ tarea.id }}">
                     <!--cada opcion es un estado, la marcada es la que coincide con el estado real de la tarea-->
                     <option value="Abierta" {% if tarea.estado == "Abierta" %}selected{% endif %}>Abierta</option>

@@ -6,20 +6,24 @@
     <table class="tabla_tareas">
         <tr>
             <th>Nombre</th>
-            <th>CIF</th>
             <th>Email de contacto</th>
-            <th>Dirección</th>
+            <th>Proyecto</th>
         </tr>
-        {% for cliente in object_list %}
+    {% for cliente in object_list %}
         <tr>
             <td><a href="{% url 'detalles_cliente' cliente.id %}">{{ cliente.nombre }}</a></td>
-            <td>{{ cliente.CIF }}</td>
             <td>{{ cliente.email_contacto }}</td>
-            <td>{{ cliente.direccion }}</td>
+            <td>
+                {% for proyecto in cliente.proyecto_set.all %}
+                    <a href="{% url 'detalles_proyecto' proyecto.pk %}">{{ proyecto.nombre }}</a>
+                {% empty %}
+                    Sin proyectos
+                {% endfor %}
+            </td>
         </tr>
         {% empty %}
         <tr>
-            <td>No se encontraron clientes.</td>
+            <td>Sin clientes</td>
         </tr>
         {% endfor %}
     </table>
