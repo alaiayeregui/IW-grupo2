@@ -221,21 +221,6 @@ class TareaNotasUpdateView(UpdateView):
     template_name = 'tarea_notas_form.html'
     success_url = reverse_lazy('tareas')
 
-def cambiar_estado(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        proyecto_id = data.get('id')
-        nuevo_estado = data.get('estado')
-
-        try:
-            tarea = Tarea.objects.get(id=proyecto_id)
-            tarea.estado = nuevo_estado
-            tarea.save()
-            return JsonResponse({'success': True, 'estado': tarea.estado})
-        except Tarea.DoesNotExist:
-            return JsonResponse({'success': False, 'error': 'Tarea no encontrada'}, status=404)
-
-
 #enviar emails de contacto
 class ContactoEmailView(FormView):
     template_name = 'correo_form.html'
